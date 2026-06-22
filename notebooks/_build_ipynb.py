@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Assemble notebooks/04-ml-analysis.ipynb (the graded DEL-03 artifact) from the
-validated companion notebooks/04_ml_analysis.py.
+"""Assemble notebooks/ml-analysis.ipynb (the graded DEL-03 artifact) from the
+validated companion notebooks/ml_analysis.py.
 
 The notebook imports the validated functions from the .py companion and calls them
 section by section, so the .ipynb reproduces the .py numbers/figures exactly
@@ -16,7 +16,7 @@ import nbformat as nbf
 from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUT = REPO_ROOT / "notebooks" / "04-ml-analysis.ipynb"
+OUT = REPO_ROOT / "notebooks" / "ml-analysis.ipynb"
 
 nb = new_notebook()
 cells = []
@@ -26,7 +26,7 @@ cells.append(new_markdown_cell(
     "\n"
     "**Reproducible (DEL-03):** this notebook runs top-to-bottom from the cached "
     "`data/*.csv` snapshots with **no Dune key** and **no network call**. It imports the "
-    "validated companion `notebooks/04_ml_analysis.py` so the numbers and figures here "
+    "validated companion `notebooks/ml_analysis.py` so the numbers and figures here "
     "reproduce that script exactly (`random_state=42`).\n"
     "\n"
     "**Additive & cuttable:** this layer only *sharpens* the Phase-3 verdict "
@@ -63,14 +63,14 @@ cells.append(new_code_cell(
     "    REPO_ROOT = p\n"
     "\n"
     "_spec = importlib.util.spec_from_file_location(\n"
-    "    'ml04', REPO_ROOT / 'notebooks' / '04_ml_analysis.py')\n"
-    "ml04 = importlib.util.module_from_spec(_spec)\n"
-    "_spec.loader.exec_module(ml04)\n"
+    "    'ml', REPO_ROOT / 'notebooks' / 'ml_analysis.py')\n"
+    "ml = importlib.util.module_from_spec(_spec)\n"
+    "_spec.loader.exec_module(ml)\n"
     "\n"
-    "ml04._ensure_figures_dir()\n"
-    "df = ml04.load_holder_features()\n"
-    "entities = ml04.load_entity_labels()\n"
-    "as_of = ml04.holder_features_as_of()\n"
+    "ml._ensure_figures_dir()\n"
+    "df = ml.load_holder_features()\n"
+    "entities = ml.load_entity_labels()\n"
+    "as_of = ml.holder_features_as_of()\n"
     "print('holder_features rows:', len(df))\n"
     "print('columns:', list(df.columns))\n"
     "print('data-as-of:', as_of)"
@@ -83,7 +83,7 @@ cells.append(new_markdown_cell(
     "UNI holders; silhouette-driven `k`; honest centroid-labeled archetypes; PCA scatter; "
     "treasury/CEX spot-check. Figures: `analysis/figures/silhouette.png`, `clusters.png`."
 ))
-cells.append(new_code_cell("clustering = ml04.run_clustering(df, entities, as_of)"))
+cells.append(new_code_cell("clustering = ml.run_clustering(df, entities, as_of)"))
 
 # --- Anomaly (AI-03) --------------------------------------------------------
 cells.append(new_markdown_cell(
@@ -93,7 +93,7 @@ cells.append(new_markdown_cell(
     "and (b) the weekly burn series with the **2025-12-22 100M-burn week whitelisted**, "
     "reporting any OTHER anomalous weeks. Figure: `analysis/figures/anomalies.png`."
 ))
-cells.append(new_code_cell("anomaly = ml04.run_anomaly_detection(df, entities, as_of)"))
+cells.append(new_code_cell("anomaly = ml.run_anomaly_detection(df, entities, as_of)"))
 
 # --- Break-even (AI-04) -----------------------------------------------------
 cells.append(new_markdown_cell(
@@ -105,7 +105,7 @@ cells.append(new_markdown_cell(
     "is the static cached spot for USD->UNI conversion — **no price prediction**. "
     "Figure: `analysis/figures/breakeven.png`."
 ))
-cells.append(new_code_cell("breakeven = ml04.run_breakeven(as_of)"))
+cells.append(new_code_cell("breakeven = ml.run_breakeven(as_of)"))
 
 # --- Report context figures -------------------------------------------------
 cells.append(new_markdown_cell(
@@ -116,9 +116,9 @@ cells.append(new_markdown_cell(
     "(`price_comparison.png`), and Uniswap TVL (`tvl_timeline.png`)."
 ))
 cells.append(new_code_cell(
-    "fig_volume_burn = ml04.make_volume_burn_timeline()\n"
-    "fig_price = ml04.make_price_comparison()\n"
-    "fig_tvl = ml04.make_tvl_timeline()"
+    "fig_volume_burn = ml.make_volume_burn_timeline()\n"
+    "fig_price = ml.make_price_comparison()\n"
+    "fig_tvl = ml.make_tvl_timeline()"
 ))
 
 # --- Recap ------------------------------------------------------------------

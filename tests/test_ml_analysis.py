@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Behavioral tests for the Phase-4 ML companion (notebooks/04_ml_analysis.py).
+"""Behavioral tests for the Phase-4 ML companion (notebooks/ml_analysis.py).
 
 These tests are runtime contracts, not unit-mocks: they import the companion and
 exercise AI-03 (anomaly detection) and AI-04 (break-even) against the real cached
@@ -15,13 +15,13 @@ from pathlib import Path
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-MODULE_PATH = REPO_ROOT / "notebooks" / "04_ml_analysis.py"
+MODULE_PATH = REPO_ROOT / "notebooks" / "ml_analysis.py"
 
 
 def _load_module():
-    spec = importlib.util.spec_from_file_location("ml_analysis_04", MODULE_PATH)
+    spec = importlib.util.spec_from_file_location("ml_analysis", MODULE_PATH)
     mod = importlib.util.module_from_spec(spec)
-    sys.modules["ml_analysis_04"] = mod
+    sys.modules["ml_analysis"] = mod
     spec.loader.exec_module(mod)
     return mod
 

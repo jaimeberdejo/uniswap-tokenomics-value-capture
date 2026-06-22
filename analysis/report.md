@@ -193,7 +193,7 @@ Ambas figuras son la base empírica de la pata «no demostrada» del veredicto: 
 
 ## 6. AI-Light: interpretación y stress-test
 
-*Aclaración — interpretabilidad y papel de la IA: las dos capas de IA de este informe (AI-Light, esta sección; AI-Medium, Sección 7) son **aditivas e interpretables: afinan el veredicto, no lo condicionan**. El veredicto se sostiene por sí solo sobre el diseño de la Fase 1 y los datos on-chain de la Fase 2 — la quema es real (emisión cero, ~106,2M quemados), modesta (1,83%/año), indirecta (buy-and-burn, no un dividendo) y no demostrada (el precio se redujo a la mitad); si se eliminaran ambas secciones de IA, esa conclusión seguiría en pie. Lo que aportan es resolución y alguna idea que la lectura manual pasaría por alto. Documentos completos: [`analysis/03-interpretation.md`](03-interpretation.md), [`analysis/03-adversarial-stress-test.md`](03-adversarial-stress-test.md).*
+*Aclaración — interpretabilidad y papel de la IA: las dos capas de IA de este informe (AI-Light, esta sección; AI-Medium, Sección 7) son **aditivas e interpretables: afinan el veredicto, no lo condicionan**. El veredicto se sostiene por sí solo sobre el diseño de la Fase 1 y los datos on-chain de la Fase 2 — la quema es real (emisión cero, ~106,2M quemados), modesta (1,83%/año), indirecta (buy-and-burn, no un dividendo) y no demostrada (el precio se redujo a la mitad); si se eliminaran ambas secciones de IA, esa conclusión seguiría en pie. Lo que aportan es resolución y alguna idea que la lectura manual pasaría por alto. Documentos completos: [`analysis/ai-light-interpretation.md`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/analysis/ai-light-interpretation.md), [`analysis/ai-light-stress-test.md`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/analysis/ai-light-stress-test.md).*
 
 La interpretación lee solo la narrativa de la Fase 1 + los dashboards de la Fase 2 y llega al veredicto de arriba. Para comprobar si sobrevive a sus críticos más fuertes, se *reforzaron al máximo* (steelman) cinco objeciones y luego se respondieron con los datos reales:
 
@@ -213,7 +213,7 @@ La interpretación lee solo la narrativa de la Fase 1 + los dashboards de la Fas
 
 ## 7. AI-Medium: machine learning
 
-*Aclaración: como la Sección 6, esta capa es **aditiva e interpretable — afina pero no condiciona** el veredicto (bórrese esta sección y la conclusión sigue en pie sobre las Fases 1–2). Reproducible de extremo a extremo desde los CSV cacheados en [`notebooks/04-ml-analysis.ipynb`](../notebooks/04-ml-analysis.ipynb) — sin clave de Dune. Todas las figuras de abajo son salidas de ese notebook.*
+*Aclaración: como la Sección 6, esta capa es **aditiva e interpretable — afina pero no condiciona** el veredicto (bórrese esta sección y la conclusión sigue en pie sobre las Fases 1–2). Reproducible de extremo a extremo desde los CSV cacheados en [`notebooks/ml-analysis.ipynb`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/notebooks/ml-analysis.ipynb) — sin clave de Dune. Todas las figuras de abajo son salidas de ese notebook.*
 
 ### 7.1 Clustering de holders (KMeans)
 
@@ -273,8 +273,9 @@ Este proyecto está construido para que un lector pueda reconstruir cada figura 
 
 - **Data-as-of:** snapshot on-chain del **2026-06-21** (`data/MANIFEST.csv`).
 - **Estado del fee switch:** re-verificado el **2026-06-22** — el fee switch del protocolo / buy-and-burn está **ACTIVO y expandiéndose**. No se halló reversión. La prueba autoritativa actual es mi serie de quema on-chain, que registra quemas semanales continuas de UNI hasta el 2026-06-21 (`data/burn_over_time_usd.csv`, `data/net_supply_mint_burn.csv`). Si este informe se entrega materialmente más tarde del 2026-06-22, re-ejecutar la comprobación on-chain antes de fiarse de él.
-- **Notebook reproducible:** [`notebooks/04-ml-analysis.ipynb`](../notebooks/04-ml-analysis.ipynb) (corre de principio a fin desde los `data/*.csv` cacheados, sin clave de API de Dune).
-- **SQL versionado:** [`queries/`](../queries/) (un `.sql` por panel del dashboard).
+- **Repositorio público:** todo el código, los datos cacheados y este informe están en <https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture> (los enlaces relativos de abajo resuelven contra la rama `main` de ese repo).
+- **Notebook reproducible:** [`notebooks/ml-analysis.ipynb`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/notebooks/ml-analysis.ipynb) (corre de principio a fin desde los `data/*.csv` cacheados, sin clave de API de Dune).
+- **SQL versionado:** [`queries/`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/tree/main/queries) (un `.sql` por panel del dashboard).
 
 ### 9.2 Procedencia de datos y la etapa on-chain
 
@@ -287,7 +288,7 @@ Este proyecto está construido para que un lector pueda reconstruir cada figura 
 
 La capa de ML está diseñada para correr **offline**. El recorrido de reproducibilidad es:
 
-1. Abrir [`notebooks/04-ml-analysis.ipynb`](../notebooks/04-ml-analysis.ipynb) (localmente en Jupyter, o en Google Colab vía su URL compartible).
+1. Abrir [`notebooks/ml-analysis.ipynb`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/notebooks/ml-analysis.ipynb) (localmente en Jupyter, o en Google Colab vía su URL compartible).
 2. Ejecutar todas las celdas de principio a fin. El notebook carga los `data/*.csv` cacheados directamente — **no se requiere clave de API de Dune, ni credenciales de red, ni consulta en vivo**. La etapa on-chain con credenciales ya se ha congelado en los CSV.
 3. El notebook regenera las figuras en `analysis/figures/` (silueta, clústeres, anomalías, break-even, además de las series de precio/volumen/TVL) como sus salidas, exactamente como se incrustan en este informe.
 
@@ -297,7 +298,7 @@ Como el paso pesado de datos está cacheado, la ruta offline es rápida y totalm
 
 - **On-chain:** Dune Analytics (DuneSQL / Trino) para tablas on-chain decodificadas, consultadas vía los `.sql` versionados; DefiLlama para la serie de TVL.
 - **ML / datos:** Python con pandas (cargar + limpiar + ingeniar características de los CSV cacheados) y scikit-learn (**StandardScaler → KMeans → IsolationForest**, más el modelo de break-even del buy-and-burn). Los dos algoritmos son elecciones deliberadamente interpretables y alineadas con la especificación, no modelos profundos opacos.
-- **Build del informe:** la fuente Markdown (`analysis/05-report.md`) se renderiza a un HTML autocontenido con **pandoc** (`--standalone --embed-resources`, figuras incrustadas como base64), y luego a PDF vía un paso de impresión del navegador. No se requiere toolchain de LaTeX.
+- **Build del informe:** la fuente Markdown (`analysis/report.md`) se renderiza a un HTML autocontenido con **pandoc** (`--standalone --embed-resources`, figuras incrustadas como base64), y luego a PDF vía un paso de impresión del navegador. No se requiere toolchain de LaTeX.
 
 ### 9.5 Disciplina de datos reales
 
@@ -332,6 +333,7 @@ Fuentes públicas externas que contextualizan y respaldan el análisis (distinta
 - **Uniswap UNIfication** — anuncio oficial de la mejora y del mecanismo buy-and-burn: <https://blog.uniswap.org/unification>
 - **Propuesta de Gobernanza #93** — el voto on-chain de UNIfication (Agora / Uniswap Foundation): <https://vote.uniswapfoundation.org>
 - **Dashboard de Dune (propio)** — los paneles on-chain de este informe: <https://dune.com/jbs19022909/uni-value-capture-after-unification>
+- **Repositorio del proyecto (propio)** — código, notebook reproducible, consultas SQL, datos cacheados y este informe: <https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture>
 - **TokenJar / Firepit** — el raíl de recolección de comisiones y quema (documentación/blog de Uniswap): <https://docs.uniswap.org> y <https://blog.uniswap.org/unification>
 - **DefiLlama** — serie de TVL de Uniswap usada en la Sección 5.6: <https://defillama.com/protocol/uniswap>
 - **Dune `prices.usd`** — precios diarios UNI/ETH/AAVE usados en la comparación de la Sección 5.5 (tabla de precios decodificada de Dune).
@@ -356,13 +358,13 @@ Fuentes públicas externas que contextualizan y respaldan el análisis (distinta
 **Fuentes de datos** (en `data/`, procedencia en `data/MANIFEST.csv`):
 `headline_metrics.csv`, `concentration_gini_nakamoto.csv`, `delegated_power.csv`, `top_holders.csv`, `governance_turnout.csv`, `burn_over_time_usd.csv`, `net_supply_mint_burn.csv`, `cumulative_burn.csv`, `uniswap_volume_weekly.csv`, `holder_features.csv`, `price_comparison.csv`, `uniswap_tvl.csv`.
 
-**SQL versionado:** [`queries/`](../queries/) — un `.sql` por panel del dashboard.
+**SQL versionado:** [`queries/`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/tree/main/queries) — un `.sql` por panel del dashboard.
 
 **Dashboard público:** <https://dune.com/jbs19022909/uni-value-capture-after-unification>
 
-**Notebook reproducible:** [`notebooks/04-ml-analysis.ipynb`](../notebooks/04-ml-analysis.ipynb)
+**Notebook reproducible:** [`notebooks/ml-analysis.ipynb`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/notebooks/ml-analysis.ipynb)
 
-**Análisis previo:** [`analysis/03-interpretation.md`](03-interpretation.md), [`analysis/03-adversarial-stress-test.md`](03-adversarial-stress-test.md), `FOUNDATION.md` (Fase 1).
+**Análisis previo:** [`analysis/ai-light-interpretation.md`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/analysis/ai-light-interpretation.md), [`analysis/ai-light-stress-test.md`](https://github.com/jaimeberdejo/uniswap-tokenomics-value-capture/blob/main/analysis/ai-light-stress-test.md), `FOUNDATION.md` (Fase 1).
 
 ---
 

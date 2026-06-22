@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-04_ml_analysis.py — Phase-4 AI/ML companion for the Uniswap tokenomics report.
+ml_analysis.py — Phase-4 AI/ML companion for the Uniswap tokenomics report.
 
 WHAT THIS DOES (DEL-03 reproducibility property)
   Runs top-to-bottom from the cached ``data/*.csv`` snapshots WITHOUT a Dune key,
@@ -35,7 +35,7 @@ import pandas as pd  # noqa: E402
 # --------------------------------------------------------------------------- #
 RANDOM_STATE = 42
 
-# notebooks/04_ml_analysis.py -> repo root is one parent up from notebooks/.
+# notebooks/ml_analysis.py -> repo root is one parent up from notebooks/.
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 FIGURES_DIR = REPO_ROOT / "analysis" / "figures"

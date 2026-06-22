@@ -8,7 +8,7 @@ every objection below is argued and answered on the onchain evidence and the das
 alone.*
 
 This document does something deliberately uncomfortable: it argues **against** the verdict
-reached in `analysis/03-interpretation.md` — that UNI's burn-based value capture is **"real
+reached in `analysis/ai-light-interpretation.md` — that UNI's burn-based value capture is **"real
 but modest and unproven."** The point of an adversarial stress-test is not to win; it is to
 find out whether a verdict survives its strongest critics. So each section below first
 **steelmans** an objection — states it in the most forceful, intellectually honest form a
